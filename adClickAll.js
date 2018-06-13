@@ -7,7 +7,7 @@ li.appendChild(a);
 document.getElementsByClassName("userMenu")[0].appendChild(li);
 function adClick(href)
 {
-	console.log(href);
+	if(href===undefined)return;
 	var xhr=new XMLHttpRequest();
 	xhr.open("GET",href,true);
 	xhr.withCredentials=true;
@@ -15,9 +15,10 @@ function adClick(href)
 }
 function adClickAll()
 {
+	var i;
 	var iframes=document.getElementsByTagName("iframe");
 	var cnt=0;
-	for(var i=0;i<iframes.length;++i)
+	for(i=0;i<iframes.length;++i)
 	{
 		var as=(iframes[i].contentDocument||iframes[i].contentWindow.document).getElementsByTagName("a");
 		for(var j=0;j<as.length;++j)
@@ -30,7 +31,7 @@ function adClickAll()
 		}
 	}
 	var areas=document.getElementsByTagName("area");
-	for(var i=0;i<areas.length;++i)
+	for(i=0;i<areas.length;++i)
 	{
 		if(areas[i].href.startsWith("http://adn.inven.co.kr/click?ads="))
 		{
@@ -38,10 +39,10 @@ function adClickAll()
 			cnt++;
 		}
 	}
-	var topsky=document.getElementById("comAdTopSky").contentWindow._v_clickthru;
-	if(topsky!==undefined)
+	var topsky=document.getElementById("comAdTopSky").contentWindow;
+	if(topsky!==undefined&&topsky._v_clickthru!==undefined)
 	{
-		adClick(topsky);
+		adClick(topsky._v_clickthru);
 		cnt++;
 	}
 	alert("광고 "+cnt+"개 클릭 완료");

@@ -2,7 +2,7 @@
 	"manifest_version":2,
 	"name":"InvenAdClick",
 	"description":"인벤 광클을 쉽고 빠르게!",
-	"version":"1.0.0",
+	"version":"1.0.1",
 	"permissions":["storage","webRequest","webRequestBlocking","http://*/*"],
 	"icons":
 	{
